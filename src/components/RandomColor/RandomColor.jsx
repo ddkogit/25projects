@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 
+import "./RandomColor.css";
 function RandomColor() {
   const [typeOfColor, setTypeOfColor] = useState("hex");
   const [color, setColor] = useState("#000000");
 
+  const [copyMessage, setCopyMessage] = useState("");
+
+  const colorRef = useRef(null);
   const generateRandomColro = (length) => {
     return Math.floor(Math.random() * length);
   };
@@ -44,12 +48,21 @@ function RandomColor() {
     setColor(`rgb(${r},${g},${b})`);
   };
 
+  const copyColorCode = () => {
+    const colorCode = colorRef.current.textContent;
+
+    navigator.clipboard.writeText(colorCode);
+
+    setTimeout(()=>{
+        setCopyMessage("Copied to Clipboard");
+    },0);
+    setTimeout(()=>{
+        setCopyMessage("");
+    },700);
+  };
   useEffect(() => {
     typeOfColor === "hex" ? handleHex() : handleRgb();
   }, [typeOfColor]);
-
-  console.log(typeOfColor);
-  console.log(color);
 
   return (
     <div
@@ -57,11 +70,37 @@ function RandomColor() {
         width: "100vw",
         height: "100vh",
         backgroundColor: color,
+        display: "flex",
+        flexDirection: "column",
+        gap: "50px",
       }}
     >
-      <div>
-        <button onClick={() => setTypeOfColor("hex")}>Create Hex</button>
-        <button onClick={() => setTypeOfColor("rgb")}>Create RGB</button>
+      <div
+        className="random-color-button"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "50px",
+          gap: "20px",
+        }}
+      >
+        <button
+          style={{
+            textDecoration: typeOfColor === "hex" ? "underline" : "",
+          }}
+          onClick={() => setTypeOfColor("hex")}
+        >
+          Create Hex
+        </button>
+        <button
+          style={{
+            textDecoration: typeOfColor === "rgb" ? "underline" : "",
+          }}
+          onClick={() => setTypeOfColor("rgb")}
+        >
+          Create RGB
+        </button>
         <button onClick={typeOfColor === "hex" ? handleHex : handleRgb}>
           Generate Random
         </button>
@@ -71,14 +110,25 @@ function RandomColor() {
           backgroundColor: "white",
           width: "200px",
           margin: "0 auto",
+          height:"150px",
 
           padding: "20px",
-          textAlign:"center",
-          borderRadius:"10px 10px 0 0"
+          textAlign: "center",
+          borderRadius: "10px 10px 0 0",
         }}
       >
         <h1>Color Code:</h1>
-        <h2>{color}</h2>
+
+        <h2
+          ref={colorRef}
+          onClick={copyColorCode}
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          {color}
+        </h2>
+        <h3>{copyMessage}</h3>
       </div>
     </div>
   );
