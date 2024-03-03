@@ -68,11 +68,12 @@ function RandomColor() {
     <div
       style={{
         width: "100vw",
-        height: "100vh",
+        height:"100vh",
         backgroundColor: color,
         display: "flex",
         flexDirection: "column",
         gap: "50px",
+     
       }}
     >
       <div
@@ -81,7 +82,7 @@ function RandomColor() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "50px",
+        marginTop:"50px",
           gap: "20px",
         }}
       >
@@ -112,7 +113,7 @@ function RandomColor() {
           margin: "0 auto",
           height:"150px",
 
-          padding: "20px",
+          padding: "25px",
           textAlign: "center",
           borderRadius: "10px 10px 0 0",
         }}

@@ -8,6 +8,8 @@ function Accordion() {
   const [enableMultiSelection, setEnableMultiSelection] = useState(false);
   const [multiple, setMultiple] = useState([]);
 
+  const [enablemulti,setEnableMulti] = useState("enablemulti");
+
   const handleSingleSelection = (id) => {
     setSelected(id === selected ? null : id);
   };
@@ -29,22 +31,26 @@ function Accordion() {
       <div className="accordion">
         <button
           onClick={() => setEnableMultiSelection(!enableMultiSelection)}
-          className="multi-selection"
+          className={
+            enableMultiSelection
+              ? `multi-selection ${enablemulti}`
+              : "multi-selection"
+          }
         >
           Enable Multi-Selection
         </button>
         {data && data.length > 0 ? (
           data.map((item) => (
-            <div className="item" key={item.id}
-            onClick={() =>
-              enableMultiSelection
-                ? handleMultiSelection(item.id)
-                : handleSingleSelection(item.id)
-            }>
-              <div
-                className="title"
-               
-              >
+            <div
+              className="item"
+              key={item.id}
+              onClick={() =>
+                enableMultiSelection
+                  ? handleMultiSelection(item.id)
+                  : handleSingleSelection(item.id)
+              }
+            >
+              <div className="title">
                 <h3>{item.question}</h3>
                 <span>
                   {enableMultiSelection
