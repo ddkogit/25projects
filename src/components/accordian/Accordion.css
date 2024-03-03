@@ -1,0 +1,44 @@
+.wrapper{
+    height: 100vh;
+    width: 100vw;
+    margin-top: 100px;
+
+}
+
+.accordion{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 500px;
+    margin: 0 auto;
+    gap: 20px;
+    
+
+}
+
+.item{
+    background-color: yellow;
+    padding: 10px 30px;
+    cursor: pointer;
+    height: auto;
+}
+
+.title{
+
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.multi-selection{
+    background-color: rgb(73, 73, 40);
+    color: white;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    cursor: pointer;
+    border: none;
+    
+}
