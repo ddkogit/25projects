@@ -5,34 +5,62 @@ import data from "./data";
 
 function Accordion() {
   const [selected, setSelected] = useState(null);
-  const [enableMultiSelection,setEnableMultiSelection] = useState(false);
+  const [enableMultiSelection, setEnableMultiSelection] = useState(false);
+  const [accSymbol, setAccSymbol] = useState("+");
+  const [multiple, setMultiple] = useState([]);
 
-  console.log(enableMultiSelection);
   const handleSingleSelection = (id) => {
     setSelected(id === selected ? null : id);
   };
 
+  const handleMultiSelection = (id) => {
+    const copyMultiple = [...multiple];
+
+    if (copyMultiple.indexOf(id) === -1) {
+      copyMultiple.push(id);
+    } else {
+      copyMultiple.splice(copyMultiple.indexOf(id), 1);
+    }
+
+    setMultiple(copyMultiple);
+  };
 
   return (
     <div className="wrapper">
       <div className="accordion">
-
-        <button onClick={()=>setEnableMultiSelection(!enableMultiSelection)} className="multi-selection">
+        <button
+          onClick={() => setEnableMultiSelection(!enableMultiSelection)}
+          className="multi-selection"
+        >
           Enable Multi-Selection
         </button>
         {data && data.length > 0 ? (
           data.map((item) => (
-            <div className="item" key={item.id}>
+            <div className="item" key={item.id}
+            onClick={() =>
+              enableMultiSelection
+                ? handleMultiSelection(item.id)
+                : handleSingleSelection(item.id)
+            }>
               <div
                 className="title"
-                onClick={() => handleSingleSelection(item.id)}
+               
               >
                 <h3>{item.question}</h3>
-
-                <span>+</span>
+                <span>
+                  {enableMultiSelection
+                    ? multiple.includes(item.id)
+                      ? "-"
+                      : "+"
+                    : selected === item.id
+                    ? "-"
+                    : "+"}
+                </span>
               </div>
 
-              {selected === item.id ? <div>{item.answer}</div> : null}
+              {enableMultiSelection
+                ? multiple.indexOf(item.id) !== -1 && <div>{item.answer}</div>
+                : selected === item.id && <div>{item.answer}</div>}
             </div>
           ))
         ) : (
