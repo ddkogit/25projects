@@ -6,7 +6,6 @@ import data from "./data";
 function Accordion() {
   const [selected, setSelected] = useState(null);
   const [enableMultiSelection, setEnableMultiSelection] = useState(false);
-  const [accSymbol, setAccSymbol] = useState("+");
   const [multiple, setMultiple] = useState([]);
 
   const handleSingleSelection = (id) => {
