@@ -1,0 +1,49 @@
+.image-slider-wrapper{
+    padding: 20px;
+}
+
+.img-slider-button{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: red;
+    outline: none;
+    margin: 0 0.2rem;
+    cursor: pointer;
+
+}
+
+.button-indicator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 300px;
+    bottom: 1rem;
+    margin: 0 auto;
+    background-color: black;
+
+}
+
+.faArrow{
+    padding: 10px;
+    margin-bottom: 150px;
+    cursor: pointer;
+}
+
+.image-slide-show{
+    position: relative;
+   
+
+}
+
+.image-slide-hidden{
+    display: none;
+}
+
+
+
+.inactive-slider{
+    background-color: gray;
+}
