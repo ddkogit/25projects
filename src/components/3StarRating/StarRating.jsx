@@ -16,7 +16,6 @@ function StarRating({ noOfStarts = 5 }) {
     setHover(rating);
   };
 
-  console.log(rating);
 
   return (
     <div>
