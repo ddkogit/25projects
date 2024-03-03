@@ -10,9 +10,12 @@ function App() {
 
   return (
    <>
+   <div className='mainApp'>
+
    <Accordion />
    <RandomColor />
-   <StarRating />
+   <StarRating noOfStarts={10} />
+   </div>
    </>
   )
 }
